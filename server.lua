@@ -1,4 +1,4 @@
--- © Script Coded By Elior#2913 To MyLifeRP (MyLife RolePlay) Server (Server Owners : Liam & Idan & Razel, Server Dev : Jacky(Eden) All The Names In The Line Have Rights To This Command ©
+-- © Script Coded By Elior#2913 To MyLifeRP (MyLife RolePlay) Server ©
 
 ESX = nil
 
