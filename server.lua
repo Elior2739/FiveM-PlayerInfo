@@ -1,4 +1,4 @@
--- © Script Coded By Elior#2913 To MyLifeRP (MyLife RolePlay) Server ©
+-- © Script Coded By Elior#2913 To MyLifeRP (Server) © --
 
 ESX = nil
 
@@ -30,6 +30,24 @@ RegisterCommand('dirty', function(source)
 	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. dirty .. ' : סכום הכסף המלוכלך שעליך הוא'})
 end, false)
 
+RegisterCommand('salary', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local jobsalary = xPlayer.job.grade_salary
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. jobsalary .. ' : המשכורת שלך היא'})
+end, false)
+
+
+RegisterCommand('id', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = source .. ' : האיידי שלך במשחק הוא'})
+end, false)
+
+RegisterCommand('ping', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local ping = GetPlayerPing(source)
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = ping .. ' : הפינג שלך הוא'})
+end, false)
+
 RegisterCommand('society', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local job = xPlayer.job.grade_name
@@ -44,8 +62,9 @@ RegisterCommand('society', function(source)
 	end
 end, false)
 
-RegisterCommand('playerinfo', function(source)
+RegisterCommand('pinfo', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
+	local jobsalary = xPlayer.job.grade_salary
 	local job = xPlayer.job.grade_name
    	local joblabel = xPlayer.job.label
 	local jobgradelabel = xPlayer.job.grade_label
@@ -53,6 +72,7 @@ RegisterCommand('playerinfo', function(source)
 	local bank = xPlayer.getAccount("bank")["money"]
 	local dirty = xPlayer.getAccount("black_money")["money"]
 	local result = "עבודתך היא : " .. joblabel .. " - " .. jobgradelabel
+	local ping = GetPlayerPing(source)
 	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. money .. ' : סכום הכסף שעליך הוא'})
 	Citizen.Wait(3000)
 	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. bank .. ' : סכום הכסף המופקד אצלך בבנק הוא'})
@@ -61,11 +81,17 @@ RegisterCommand('playerinfo', function(source)
 	Citizen.Wait(3000)
 	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = result })
 	Citizen.Wait(3000)
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. jobsalary .. ' : המשכורת שלך היא'})
+	Citizen.Wait(3000)
 	if job == 'boss' then
 		TriggerEvent('esx_society:getSociety', xPlayer.job.name, function (society)
 		TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
 		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. account.money .. ' : סכום הכסף שבחברה שלך הוא'})
 	     end)
-	end)
-    end
+	  end)
+	Citizen.Wait(3000)
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = source .. ' : האיידי שלך במשחק הוא'})
+	Citizen.Wait(3000)
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = ping .. ' : הפינג שלך הוא'})
+        end
 end, false)
