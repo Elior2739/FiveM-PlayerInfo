@@ -89,9 +89,9 @@ RegisterCommand('pinfo', function(source)
 		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. account.money .. ' : סכום הכסף שבחברה שלך הוא'})
 	     end)
 	  end)
+	end
 	Citizen.Wait(3000)
 	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = source .. ' : האיידי שלך במשחק הוא'})
 	Citizen.Wait(3000)
 	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = ping .. ' : הפינג שלך הוא'})
-        end
 end, false)
