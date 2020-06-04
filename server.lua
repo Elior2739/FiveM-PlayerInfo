@@ -62,6 +62,33 @@ RegisterCommand('society', function(source)
 	end
 end, false)
 
+RegisterCommand('givecash', function(source, args)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	if args[0] == '' or ' ' or nill or null then
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'האיידי של השחקן שאתה רוצה להעביר לו את הכסף אינו קיים'})		
+	end
+		
+	if args[1] == '' or ' ' or 0 or nill or null then
+				TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'שכחת להשים את כמות הכסף שאתה רוצה להעביר'})
+	end
+		
+	local xPlayer2 = ESX.GetPlayerFromId(args[0])
+	if xPlayer2 == nill or null then
+			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'האיידי של השחקן שאתה רוצה להעביר לו את הכסף אינו קיים'})
+	end
+		
+	if xPlayer.getAccount("bank")["money"] <= args[1] then
+			TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'אין לך מספיק כסף בישביל להעביר את סכום זה'})
+	end
+		
+	xPlayer.removeAccountMoney('bank', args[1])
+	xPlayer2.addAccountMoney('bank', args[1])
+	player_name = GetPlayerName(args[0])
+		
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = '₪' .. args[1] .. player_name .. ' העברת ל'})
+	TriggerClientEvent('mythic_notify:client:SendAlert', args[0], { type = 'success', text = '₪' .. args[1] " העביר לך" .. player_name})
+end, false)
+
 RegisterCommand('pinfo', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local jobsalary = xPlayer.job.grade_salary
