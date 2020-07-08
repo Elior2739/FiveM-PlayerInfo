@@ -1,4 +1,4 @@
--- © Script Coded By Elior#2913 To MyLifeRP (Server) © --
+-- © Script Coded By Elior#2913 And Mr.Itchy#9999 To MyLifeRP (Server) © --
 
 ESX = nil
 
