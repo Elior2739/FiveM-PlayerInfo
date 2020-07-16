@@ -1,11 +1,36 @@
 # : על הסקריפט 
-.Mythic_Notify הסקריפט נותן מידע על השחקן בצד ימין למעלה בעזרת
+
+Es_extended - .הסקריפט נותן מערכת כסף ושכולם יכולים להשתמש בו
+
+mythic_notify - .הסקריפט נותן מידע על השחקן בצד ימין למעלה בעזרת
 
 # : תמונות
+
 ![/cash](https://i.ibb.co/Yc8fYwL/Capture.png) 
- 
+
+# : התקנה
+
+: דוגמא ESXלהשים את הסריפט אחרי הפעלת מערכת ה
+
+```
+start async
+start mysql-async
+start essentialmode
+start esplugin_mysql
+start es_extended
+
+start esx_menu_default
+start esx_menu_list
+start esx_menu_dialog
+
+start FiveM-PlayerInfo
+```
 
 # : דרישות הסקריפט
+
+[es_extended - ](https://github.com/esx-framework/es_extended) נותן ESXמאפשר לסקריפט להשתמש במערכת הכסף ש
+
+[esx_society - ](https://github.com/esx-framework/esx_society) מאפשר לשחקן לראות כמות כסף המופקדת אצל החברה/העבודה
 
 [Mythic_Notify - ](https://github.com/JayMontana36/mythic_notify) הסקריפט נותן אפשרות לשלוח הודעות בצד ימין למעלה
 
@@ -29,5 +54,10 @@
             
 /pinfo - נותן מידע על כל השחקן שלוש שניות בין הודעה להודעה 
 
-# : לעזרה 
+#: לעזרה
+
+: לפני שאתם פונים אליי תבדקו את הדברים הבאים
+
+**esx_society** - במידה ויש ארור איתו זה יכול לגרום לארור כשאתם מדליקים את השרת
+
 Elior#2913 : לעזרה תוכלו לפנות אליי בדיסקורד
