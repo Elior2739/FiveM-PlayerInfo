@@ -1,4 +1,4 @@
--- © Script Coded By Elior#2913 And Mr.Itchy#9999 To MyLifeRP (Server) © --
+-- © This Script Coded By Mr.Itchy#0001 And Elior#0590 © --
 
 resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
