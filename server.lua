@@ -1,97 +1,99 @@
--- © This Script Coded By Mr.Itchy#2223 And Elior#0590 © --
+-- © This Resource Coded By Elior#0590 And Mr.Itchy#2223 © --
+-- © This Resource Protected By Apache-2.0 License © --
 
 ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 RegisterCommand('job', function(source)
-	local xPlayer = ESX.GetPlayerFromId(source)
-	local joblabel = xPlayer.job.label
-	local jobgradelabel = xPlayer.job.grade_label
-	local result = "עבודתך היא : " .. joblabel .. " - " .. jobgradelabel
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = result })
+    local xPlayer = ESX.GetPlayerFromId(source)
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "עבודתך היא : " .. xPlayer.job.label .. " - " .. xPlayer.job.grade_label })
 end, false)
 
 RegisterCommand('cash', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local money = xPlayer.getMoney()
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. money .. ' : סכום הכסף שעליך הוא'})
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. xPlayer.getMoney() .. ' : סכום הכסף שעליך הוא'})
 end, false)
 
 RegisterCommand('bank', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local bank = xPlayer.getAccount("bank")["money"]
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. bank .. ' : סכום הכסף המופקד אצלך בבנק הוא'})
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. xPlayer.getAccount("bank")["money"] .. ' : סכום הכסף המופקד אצלך בבנק הוא'})
 end, false)
 
 RegisterCommand('dirty', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local dirty = xPlayer.getAccount("black_money")["money"]
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. dirty .. ' : סכום הכסף המלוכלך שעליך הוא'})
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. xPlayer.getAccount("black_money")["money"] .. ' : סכום הכסף המלוכלך שעליך הוא'})
 end, false)
 
 RegisterCommand('salary', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local jobsalary = xPlayer.job.grade_salary
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. jobsalary .. ' : המשכורת שלך היא'})
+    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. xPlayer.job.grade_salary .. ' : המשכורת שלך היא'})
 end, false)
 
 
 RegisterCommand('id', function(source)
+	if consoleCheck(source) then
+	    print("You're ID Is Zero Because You Are The Console")
+	    return
+	end
 	local xPlayer = ESX.GetPlayerFromId(source)
 	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = source .. ' : האיידי שלך במשחק הוא'})
 end, false)
 
 RegisterCommand('ping', function(source)
-	local xPlayer = ESX.GetPlayerFromId(source)
-	local ping = GetPlayerPing(source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = ping .. ' : הפינג שלך הוא'})
+	local xPlayer = ESX.GetPlayerFromId(sourcTriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text =GetPlayerPing(source) .. "ms" .. ' : הפינג שלך הוא'})
 end, false)
 
 RegisterCommand('society', function(source)
+	if consoleCheck(source) then
+	    print("Console Can't Use This Command")
+	    return
+	end
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local job = xPlayer.job.grade_name
-	if job == 'boss' then
-		TriggerEvent('esx_society:getSociety', xPlayer.job.name, function (society)
-		TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
-		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. account.money .. ' : סכום הכסף שבחברה שלך הוא'})
-	      end)
-	   end)
+	if xPlayer.job.grade_name == 'boss' then
+	    TriggerEvent('esx_society:getSociety', xPlayer.job.name, function (society)
+		    TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
+		        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. account.money .. ' : סכום הכסף שבחברה שלך הוא'})
+	        end)
+	    end)
 	else
-		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'תצטרך להיות מנהל החברה/עבודה שלך'})
+        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'תצטרך להיות מנהל החברה/עבודה שלך'})
 	end
 end, false)
 
 RegisterCommand('pinfo', function(source)
+	if consoleCheck(source) then
+	    print("Console Can't Use This Command")
+	    return
+	end
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local jobsalary = xPlayer.job.grade_salary
-	local job = xPlayer.job.grade_name
-   	local joblabel = xPlayer.job.label
-	local jobgradelabel = xPlayer.job.grade_label
-	local money = xPlayer.getMoney()
-	local bank = xPlayer.getAccount("bank")["money"]
-	local dirty = xPlayer.getAccount("black_money")["money"]
-	local result = "עבודתך היא : " .. joblabel .. " - " .. jobgradelabel
-	local ping = GetPlayerPing(source)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. money .. ' : סכום הכסף שעליך הוא'})
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. xPlayer.getMoney() .. ' : סכום הכסף שעליך הוא'})
 	Citizen.Wait(3000)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. bank .. ' : סכום הכסף המופקד אצלך בבנק הוא'})
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. xPlayer.getAccount("bank")["money"] .. ' : סכום הכסף המופקד אצלך בבנק הוא'})
 	Citizen.Wait(3000)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. dirty .. ' : סכום הכסף המלוכלך שעליך הוא'})
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. xPlayer.getAccount("black_money")["money"] .. ' : סכום הכסף השחור שעליך הוא'})
 	Citizen.Wait(3000)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = result })
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "עבודתך היא : " .. xPlayer.job.label .. " - " .. xPlayer.job.grade_label })
 	Citizen.Wait(3000)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. jobsalary .. ' : המשכורת שלך היא'})
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. xPlayer.job.grade_salary .. ' : המשכורת שלך היא'})
 	Citizen.Wait(3000)
-	if job == 'boss' then
+	if xPlayer.job.grade_name == 'boss' then
 		TriggerEvent('esx_society:getSociety', xPlayer.job.name, function (society)
-		TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
-		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. account.money .. ' : סכום הכסף שבחברה שלך הוא'})
-	     end)
-	  end)
+		    TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
+		        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. account.money .. ' : סכום הכסף שבחברה שלך הוא'})
+	        end)
+	    end)
 	end
 	Citizen.Wait(3000)
 	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = source .. ' : האיידי שלך במשחק הוא'})
-	Citizen.Wait(3000)
-	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = ping .. ' : הפינג שלך הוא'})
+  	Citizen.Wait(3000)
+	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = GetPlayerPing(source) .. ' : הפינג שלך הוא'})
 end, false)
+
+function consoleCheck(id)
+   if id == 0 then
+      return true
+   else
+      return false
+   end
+end
