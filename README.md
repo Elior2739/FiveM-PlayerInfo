@@ -31,7 +31,7 @@ start FiveM-PlayerInfo
 
 [esx_society - ](https://github.com/esx-framework/esx_society) מאפשר לשחקן לראות כמות כסף המופקדת אצל החברה/העבודה
 
-[Mythic_Notify - ](https://github.com/JayMontana36/mythic_notify) הסקריפט נותן אפשרות לשלוח הודעות בצד ימין למעלה
+[mythic_notify - ](https://github.com/JayMontana36/mythic_notify) הסקריפט נותן אפשרות לשלוח הודעות בצד ימין למעלה
 
 # : פקודות
 
@@ -57,6 +57,6 @@ start FiveM-PlayerInfo
 
 : לפני שאתם פונים אליי תבדקו את הדברים הבאים
 
-**esx_society** - במידה ויש ארור איתו זה יכול לגרום לארור כשאתם מדליקים את השרת
+**esx_society** אם יש איתו בעיה כשהשרת מתחיל זה יגרום לגרום לבעיה באחת הפקודות
 
 Elior#0590, Mr.Itchy#2223  : לעזרה תוכלו לפנות אליי בדיסקורד
