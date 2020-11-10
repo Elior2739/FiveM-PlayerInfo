@@ -6,26 +6,46 @@ ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 RegisterCommand('job', function(source)
+    if consoleCheck(source) then
+	    print("Console Can't Execute This Command")
+	    return
+	end
     local xPlayer = ESX.GetPlayerFromId(source)
 	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "עבודתך היא : " .. xPlayer.job.label .. " - " .. xPlayer.job.grade_label })
 end, false)
 
 RegisterCommand('cash', function(source)
+    if consoleCheck(source) then
+	    print("Console Can't Execute This Command")
+	    return
+	end
 	local xPlayer = ESX.GetPlayerFromId(source)
 	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. xPlayer.getMoney() .. ' : סכום הכסף שעליך הוא'})
 end, false)
 
 RegisterCommand('bank', function(source)
+    if consoleCheck(source) then
+	    print("Console Can't Execute This Command")
+	    return
+	end
 	local xPlayer = ESX.GetPlayerFromId(source)
 	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. xPlayer.getAccount("bank")["money"] .. ' : סכום הכסף המופקד אצלך בבנק הוא'})
 end, false)
 
 RegisterCommand('dirty', function(source)
+    if consoleCheck(source) then
+	    print("Console Can't Execute This Command")
+	    return
+	end
 	local xPlayer = ESX.GetPlayerFromId(source)
 	TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. xPlayer.getAccount("black_money")["money"] .. ' : סכום הכסף המלוכלך שעליך הוא'})
 end, false)
 
 RegisterCommand('salary', function(source)
+    if consoleCheck(source) then
+	    print("Console Can't Execute This Command")
+	    return
+	end
 	local xPlayer = ESX.GetPlayerFromId(source)
     TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = "₪" .. xPlayer.job.grade_salary .. ' : המשכורת שלך היא'})
 end, false)
@@ -41,12 +61,17 @@ RegisterCommand('id', function(source)
 end, false)
 
 RegisterCommand('ping', function(source)
-	local xPlayer = ESX.GetPlayerFromId(sourcTriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text =GetPlayerPing(source) .. "ms" .. ' : הפינג שלך הוא'})
+    if consoleCheck(source) then
+	    print("Console Can't Execute This Command")
+	    return
+	end
+    local xPlayer = ESX.GetPlayerFromId(source)
+    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = GetPlayerPing(source) .. "ms" .. ' : הפינג שלך הוא'})
 end, false)
 
 RegisterCommand('society', function(source)
-	if consoleCheck(source) then
-	    print("Console Can't Use This Command")
+    if consoleCheck(source) then
+	    print("Console Can't Execute This Command")
 	    return
 	end
 	local xPlayer = ESX.GetPlayerFromId(source)
@@ -62,8 +87,8 @@ RegisterCommand('society', function(source)
 end, false)
 
 RegisterCommand('pinfo', function(source)
-	if consoleCheck(source) then
-	    print("Console Can't Use This Command")
+    if consoleCheck(source) then
+	    print("Console Can't Execute This Command")
 	    return
 	end
 	local xPlayer = ESX.GetPlayerFromId(source)
